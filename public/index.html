@@ -12,6 +12,7 @@
     <script src="uv/uv.bundle.js" defer></script>
       <script src="uv/uv.config.js" defer></script>
       <script src="js/mathhelp/regsw.js" defer></script>
+      
   </head>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -82,13 +83,13 @@ h1 {
   </style>
   <body>
     <div class="topbar">
-      <h1 class="text-sky-200 text-7xl" onclick="window.location.href='/'">Arc</h1>
+      <h1 class="text-sky-200 text-7xl hover:cursor-pointer" onclick="window.location.href='/'">Arc</h1>
       <form id="uv-form">
         <input id="uv-address" type="text" placeholder="Search the web" class="search"/>
       </form>
       <div class="icons">
-      <i class="fa-solid fa-gears text-sky-200 text-4xl hover:cursor-pointer px-2"></i>
-      <i class="fa-solid fa-gamepad text-sky-200 text-4xl hover:cursor-pointer px-2"></i>
+      <i class="fa-solid fa-gears text-sky-200 text-4xl hover:cursor-pointer px-2" ></i>
+      <i class="fa-solid fa-gamepad text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="games()"></i>
     </div>
   </div>
     <iframe src="search.html" id="mainframe" class="searchiframe" height="100%">
@@ -96,5 +97,6 @@ h1 {
     </iframe>
     <script src="js/mathhelp/search.js" defer></script>
       <script src="js/mathhelp/main.js" defer></script>
+      <script src="js/mathhelp/pre.js" defer></script>
   </body>
 </html>
