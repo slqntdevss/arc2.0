@@ -25,3 +25,13 @@ form.addEventListener("submit", async (event) => {
   const url = search(address.value, "https://www.google.com/search?q=%s");
   frame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
 });
+async function games() {
+    try {
+        await registerSW();
+      } catch (err) {
+        console.log(err);
+        throw err;
+      }
+    
+      frame.src = __uv$config.prefix + __uv$config.encodeUrl("https://radon.games");
+};
