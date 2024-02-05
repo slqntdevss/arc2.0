@@ -101,8 +101,27 @@
     color: white;
     overflow: hidden;
     }
+    @keyframes scaleAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Apply the animation to the element */
+        #shader {
+          left: 50%;
+          top: 50%;
+            animation: scaleAnimation 5s infinite ease-in-out;
+        }
   </style>
   <body>
+    <div id="shader" class="overflow-hidden saturate-200 absolute blur-[80px] duration-1000 heroBlobs rounded-full transform -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_50%_50%,_#338fff,_#8645ff)] h-[400px] left-[50%] lg:h-[700px] lg:left-[50%] lg:w-[700px] top-[50%] w-[400px]"></div>
     <h1 class="text-7xl center">Arc</h1>
     <form id="uv-form">
       <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
@@ -112,7 +131,7 @@
       <button class="image-button" onclick="goto('https://nowgg.nl/apps/roblox-corporation/5349/roblox.html')">
         <img src="img/RobloxLogo.png" alt="Button 1">
       </button>
-      <button class="image-button" onclick="goto('https://nowgg.nl/apps/epic-games/7308/fortnite.html')">
+      <button class="image-button" onclick="goto('https://alan-turing-wa1z.onrender.com/apps/epic-games/7308/fortnite.html')">
         <img src="https://m.media-amazon.com/images/M/MV5BNzU2YTY2OTgtZGZjZi00MTAyLThlYjUtMWM5ZmYzOGEyOWJhXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_FMjpg_UX1000_.jpg" alt="Button 2">
       </button>
       <button class="image-button" onclick="goto('https://youtube.com')">
@@ -124,5 +143,6 @@
     </div>
     <script src="js/mathhelp/search.js" defer></script>
       <script src="js/mathhelp/index.js" defer></script>
+      
   </body>
 </html>
