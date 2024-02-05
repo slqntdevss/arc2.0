@@ -33,6 +33,21 @@ html, body {
       padding: 0 20px;
       
 }
+.minibar {
+    font-family: 'Poppins', sans-serif;
+    height: 40px;
+    width: 100%;
+    background-color: #0e0e0e;
+    opacity: 0.7;
+    left: 0%;
+    position: absolute;
+    top: 80px;
+    backdrop-filter: blur(8px);
+    display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+}
 .search {
   flex-grow: 1;
       text-align: center;
@@ -90,6 +105,12 @@ h1 {
       <div class="icons">
       <i class="fa-solid fa-gears text-sky-200 text-4xl hover:cursor-pointer px-2" ></i>
       <i class="fa-solid fa-gamepad text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="games()"></i>
+    </div>
+    <div class="minibar">
+      <div class="icons">
+        <i class="fa-solid fa-expand text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="fullscreen()"></i>
+        <i class="fa-solid fa-rotate-right text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="reload()"></i>
+      </div>
     </div>
   </div>
     <iframe src="search.html" id="mainframe" class="searchiframe" height="100%">

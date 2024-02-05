@@ -18,3 +18,9 @@ async function goto(site) {
     
       location.href = __uv$config.prefix + __uv$config.encodeUrl(site);
 }
+async function fullscreen() {
+  frame.requestFullscreen();
+}
+async function reload() {
+  frame.contentWindow.location.reload();
+}
