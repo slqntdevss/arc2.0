@@ -1,0 +1,14 @@
+{
+	"name": "Arc",
+	"short_name": "Arc",
+	"start_url": "/",
+	"description": "Very minimalistic proxy with quick access to websites",
+	"icons": [
+		{
+		"src": "img/arc.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"display": "fullscreen"
+}

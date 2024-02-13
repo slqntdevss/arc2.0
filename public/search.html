@@ -100,6 +100,8 @@
       font-family: 'Poppins', sans-serif;
     color: white;
     overflow: hidden;
+    opacity: 1;
+   transition: opacity .5s;
     }
     @keyframes scaleAnimation {
             0% {
@@ -115,13 +117,14 @@
 
         /* Apply the animation to the element */
         #shader {
-          left: 50%;
-          top: 50%;
+          left: 34%;
+          top: 10%;
             animation: scaleAnimation 5s infinite ease-in-out;
         }
+  
   </style>
   <body>
-    <div id="shader" class="overflow-hidden saturate-200 absolute blur-[80px] duration-1000 heroBlobs rounded-full transform -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_50%_50%,_#338fff,_#8645ff)] h-[400px] left-[50%] lg:h-[700px] lg:left-[50%] lg:w-[700px] top-[50%] w-[400px]"></div>
+    <div id="shader" class="overflow-hidden saturate-200 absolute blur-[80px] animate-ping duration-1000 heroBlobs rounded-full transform -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_50%_50%,_#338fff,_#8645ff)] h-[400px] left-[40%] lg:h-[700px] lg:left-[50%] lg:w-[700px] top-[50%] w-[400px]"></div>
     <h1 class="text-7xl center">Arc</h1>
     <form id="uv-form">
       <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 

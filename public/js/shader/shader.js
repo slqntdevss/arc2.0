@@ -12,21 +12,22 @@ function animateSize() {
         height: screenHeight / 2 * randomScale
     };
 
-    // Center the element
-    const newPosition = {
-        x: (screenWidth - newSize.width) / 2,
-        y: (screenHeight - newSize.height) / 2
-    };
-
     shader.style.width = newSize.width + 'px';
     shader.style.height = newSize.height + 'px';
-    shader.style.left = newPosition.x + 'px';
-    shader.style.top = newPosition.y + 'px';
 }
 
 function animate() {
     animateSize();
     setTimeout(animateForever, 3000); // Adjust the timeout as needed
 }
+window.transitionToPage = function(href) {
+    document.querySelector('body').style.opacity = 0
+    setTimeout(function() { 
+        window.location.href = href
+    }, 500)
+}
 
+document.addEventListener('DOMContentLoaded', function(event) {
+    document.querySelector('body').style.opacity = 1
+})
 animate();

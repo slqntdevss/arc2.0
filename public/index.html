@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Arc is an amazing site that can be used for students struggling in STEM related classes.">
     <title>Arc</title>
     <link href="css/output.css" rel="stylesheet" />
     <link href="css/main.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/a70619ef6c.js" crossorigin="anonymous"></script>
     <script src="uv/uv.bundle.js" defer></script>
+    <link rel="manifest" href="/manifest.json">
       <script src="uv/uv.config.js" defer></script>
       <script src="js/mathhelp/regsw.js" defer></script>
       <script type="importmap">
@@ -28,6 +30,8 @@
         font-family: 'Poppins', sans-serif;
         overflow: hidden;
         user-select: none; 
+        opacity: 1;
+   transition: opacity .5s;
         }
     .topbar {
         font-family: 'Poppins', sans-serif;
@@ -105,13 +109,14 @@
   </head>
   <body>
     <div class="topbar">
-      <h1 class="text-sky-200 text-7xl hover:cursor-pointer" onclick="window.location.href='/'">Arc</h1>
+      <h1 class="text-sky-200 text-7xl hover:cursor-pointer" onclick="frame.src = 'search.html'">Arc</h1>
       <form id="uv-form">
         <input id="uv-address" type="text" placeholder="Search the web" class="search"/>
       </form>
       <div class="icons">
-      <i class="fa-solid fa-gears text-sky-200 text-4xl hover:cursor-pointer px-2" ></i>
+      <i class="fa-solid fa-gears text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="frame.src = 'settings.html'"></i>
       <i class="fa-solid fa-gamepad text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="games()"></i>
+      <i class="fa-brands fa-app-store-ios text-sky-200 text-4xl hover:cursor-pointer px-2"></i>
     </div>
     <div class="minibar backdrop-blur-lg">
       <div class="icons">
@@ -120,9 +125,12 @@
       </div>
     </div>
   </div>
-    <iframe src="search.html" id="mainframe" class="searchiframe" height="100%">
+    <iframe src="search.html" id="mainframe" class="searchiframe" height="100%" title="mainframe">
       <p>Your browser does not support iframes.</p>
     </iframe>
+    <h1>
+      load screen test
+    </h1>
     <script src="js/mathhelp/search.js" defer></script>
       <script src="js/mathhelp/main.js" defer></script>
       <script src="js/mathhelp/pre.js" defer></script>
