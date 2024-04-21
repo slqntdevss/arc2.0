@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Arc is an amazing site that can be used for students struggling in STEM related classes.">
+    <title>Arc</title>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a70619ef6c.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="js/chat.js" defer></script>
+    <script src="uv/uv.bundle.js" defer></script>
+    <link rel="manifest" href="/manifest.json">
+      <script src="uv/uv.config.js" defer></script>
+      <link rel="icon" type="image/x-icon" href="img/arc.png">
+      <script src="js/mathhelp/regsw.js" defer></script>
+      <style>
+        body {
+      background: #1d1d1d;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow: hidden;
+    opacity: 1;
+   transition: opacity .5s;
+    }
+      </style>
+  </head>
+  <body>
+    <div class="chatbox">
+        <div class="messageContainer">
+
+        </div>
+        <button id="send" class="send">Send</button>
+        <input id="message" autocomplete="off" placeholder="Enter your message"/>
+        
+    </div>
+    <script src="js/mathhelp/pre.js" defer></script>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 	"name": "Arc",
 	"short_name": "Arc",
 	"start_url": "/",
-	"description": "Very minimalistic proxy with quick access to websites",
+	"description": "Arc is an amazing site that can be used for students struggling in STEM related classes.",
 	"icons": [
 		{
 		"src": "img/arc.png",

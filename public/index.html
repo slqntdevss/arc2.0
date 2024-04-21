@@ -6,133 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Arc is an amazing site that can be used for students struggling in STEM related classes.">
     <title>Arc</title>
-    <link href="css/output.css" rel="stylesheet" />
-    <link href="css/main.css" />
+    <link href="main.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/a70619ef6c.js" crossorigin="anonymous"></script>
+    <script src="baremux/bare.cjs" defer></script>
+    <script src="epoxy/index.js" defer></script>
     <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
     <link rel="manifest" href="/manifest.json">
-      <script src="uv/uv.config.js" defer></script>
+      <link rel="icon" type="image/x-icon" href="img/arc.png">
       <script src="js/mathhelp/regsw.js" defer></script>
-      <script type="importmap">
-        {
-          "imports": {
-            "three": "https://unpkg.com/three@<version>/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
-          }
-        }
-      </script>
       <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-    html, body {
-      width: 100%;
-        height: 100%;
-        font-family: 'Poppins', sans-serif;
-        overflow: hidden;
-        user-select: none; 
-        opacity: 1;
-   transition: opacity .5s;
-        }
-    .topbar {
-        font-family: 'Poppins', sans-serif;
-        height: 80px;
-        background-color: #0e0e0e;
-        display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 20px;
-          
-    }
-    .minibar {
-        font-family: 'Poppins', sans-serif;
-        height: 35px;
-        width: 100%;
-        background-color: #0e0e0e;
-        opacity: 0.7;
-        left: 0%;
-        position: absolute;
-        top: 80px;
-        backdrop-filter: blur(8px);
-        display: flex;
-          align-items: center;
-          justify-content: space-between;
-          
-    }
-    .search {
-      flex-grow: 1;
-          text-align: center;
-          display: flex;
-          align-items: center;
-          align-self: center;
-          left: 50%;
-          top: 2%;
-          transform: translateX(-50%);
-          color: white;
-          background-color: transparent;
-          border-radius: 10px;
-          backdrop-filter: blur(10px);
-          border-width: 1px;
-          box-shadow: var(--box-shadow);
-          position: absolute;
-          transition-timing-function: ease-in-out;
-          transition: 1.5s;
-          font-size: 24px;
-          border-radius: 9px;
-          margin: 0 0 16px 0;
-          padding: 16px;
-          height: 50px;
-          width: 50%;
-          outline: transparent;
-        }
-        .search:hover {
-      transition-timing-function: ease-in-out;
-      transition: 1s;
-      width: 57.5%;
-    }
-    .search:focus {
-      transition-timing-function: ease-in-out;
-      transition: 1s;
-      width: 65%;
-    }
-    h1 {
-        font-family: 'Poppins', sans-serif;
-    }
-    .searchiframe {
-        width: 100%;
-        height: 100% !important;
-    }
-    .icons {
-          display: flex;
-          align-items: center;
-    }
+        
       </style>
   </head>
   <body>
+    <div id="screen"></div>
     <div class="topbar">
-      <h1 class="text-sky-200 text-7xl hover:cursor-pointer" onclick="frame.src = 'search.html'">Arc</h1>
+      <h1 class="text-sky-200 text-7xl hover:cursor-pointer" onclick="frame.src='search.html'">Arc</h1>
       <form id="uv-form">
-        <input id="uv-address" type="text" placeholder="Search the web" class="search"/>
+        <input id="uv-address" type="text" placeholder="Search the web" class="search" autocomplete="off"/>
       </form>
       <div class="icons">
       <i class="fa-solid fa-gears text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="frame.src = 'settings.html'"></i>
+      <i class="fa-solid fa-comment text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="frame.src = 'chat.html'"></i>
       <i class="fa-solid fa-gamepad text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="games()"></i>
       <i class="fa-brands fa-app-store-ios text-sky-200 text-4xl hover:cursor-pointer px-2"></i>
     </div>
-    <div class="minibar backdrop-blur-lg">
+    <div class="backdrop-blur-lg minibar">
       <div class="icons">
         <i class="fa-solid fa-expand text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="fullscreen()"></i>
         <i class="fa-solid fa-rotate-right text-sky-200 text-4xl hover:cursor-pointer px-2" onclick="reload()"></i>
       </div>
     </div>
   </div>
+  
     <iframe src="search.html" id="mainframe" class="searchiframe" height="100%" title="mainframe">
       <p>Your browser does not support iframes.</p>
     </iframe>
+    
     <h1>
       load screen test
     </h1>
     <script src="js/mathhelp/search.js" defer></script>
       <script src="js/mathhelp/main.js" defer></script>
+      <script src="js/user/name.js" defer></script>
       <script src="js/mathhelp/pre.js" defer></script>
        
   </body>

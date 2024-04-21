@@ -1,46 +1,119 @@
-import { createBareServer } from "@tomphttp/bare-server-node";
 import express from "express";
-import { createServer } from "node:http";
+import { createServer } from "http";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
-import { join } from "node:path";
-import { hostname } from "node:os";
+import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
+import { baremuxPath } from "@mercuryworkshop/bare-mux";
+import { join } from "path";
+import bodyParser from "body-parser";
+import { hostname } from "os";
+import wisp from "wisp-server-node";
+import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 
-const publicPath = fileURLToPath(new URL("../public/", import.meta.url));
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const publicPath = join(__dirname, "../public");
 
-const bare = createBareServer("/bare/");
 const app = express();
+const server = createServer();
 
-// Load our publicPath first and prioritize it over UV.
+app.use(bodyParser.json());
+let messages = [];
+function filterWords(message, wordList) {
+  const words = message.split(/\s+/);
+  function containsBadWord(word) {
+    return wordList.some((badWord) => word.toLowerCase().includes(badWord));
+  }
+  const containsPhrase = words.some((word) => containsBadWord(word));
+  if (containsPhrase) {
+    return false;
+  }
+  return true;
+}
+function filterMessage(message) {
+  const filteredWords = [
+    "nigga",
+    "nigger",
+    "n1gga",
+    "border hopper",
+    "n1gg@",
+    "nig",
+    "kill yourself",
+    "kys",
+    "jump off a cliff",
+    "ky$",
+    "killyourself",
+    "faggot",
+    "killyour$elf",
+    "rigged",
+    "slut",
+    "$lut",
+    "whore",
+    "fag",
+    "wh0re",
+    "digger",
+  ];
+  // Check if the message contains any filtered words
+  for (const word of filteredWords) {
+    if (message.toLowerCase().includes(word)) {
+      return null; // Return null if message contains filtered words
+    }
+  }
+  return message; // Return the original message if no filtered words are found
+}
+// Route to send messages
+app.post("/sendmessage", (req, res) => {
+  const { username, message } = req.body;
+  
+  // Filter message on the server side
+  const filteredMessage = filterMessage(message);
+  if (!filteredMessage) {
+    return res.status(400).send("Message contains prohibited words");
+  }
+  
+  const newMessage = { username, message: filteredMessage };
+  messages.push(newMessage);
+  res.status(201).send(newMessage);
+});
+
+app.get("/messages", (req, res) => {
+  res.send(messages);
+});
 app.use(express.static(publicPath));
-// Load vendor files last.
-// The vendor's uv.config.js won't conflict with our uv.config.js inside the publicPath directory.
 app.use("/uv/", express.static(uvPath));
+app.use("/epoxy/", express.static(epoxyPath));
+app.use("/baremux/", express.static(baremuxPath));
+/*const socketio = new Server(server);
+socketio.on("connection", (socket) => {
+  console.log("A user connected");
 
-// Error for everything else
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+
+  socket.on("chatMessage", (message) => {
+    io.emit("chatMessage", message);
+  });
+});*/
 app.get("/", (_req, res) => {
   res.sendFile(join(publicPath, "index.html"));
 });
-app.use((req, res) => {
-  res.status(404);
-  res.sendFile(join(publicPath, "404.html"));
+
+app.use((_req, res) => {
+  res.status(404).sendFile(join(publicPath, "404.html"));
 });
 
-const server = createServer();
-
 server.on("request", (req, res) => {
-  if (bare.shouldRoute(req)) {
-    bare.routeRequest(req, res);
-  } else {
+  // Check if the request should be handled by express
+  if (!req.url.endsWith("/wisp/")) {
     app(req, res);
   }
 });
 
-server.on("upgrade", (req, socket, head) => {
-  if (bare.shouldRoute(req)) {
-    bare.routeUpgrade(req, socket, head);
+server.on("upgrade", (req, socket2, head) => {
+  if (req.url.endsWith("/wisp/")) {
+    wisp.routeRequest(req, socket2, head);
   } else {
-    socket.end();
+    socket2.end();
   }
 });
 
@@ -48,32 +121,18 @@ let port = parseInt(process.env.PORT || "");
 
 if (isNaN(port)) port = 8080;
 
-server.on("listening", () => {
-  const address = server.address();
-
-  // by default we are listening on 0.0.0.0 (every interface)
-  // we just need to list a few
-  console.log("Listening on:");
-  console.log(`\thttp://localhost:${address.port}`);
-  console.log(`\thttp://${hostname()}:${address.port}`);
-  console.log(
-    `\thttp://${
-      address.family === "IPv6" ? `[${address.address}]` : address.address
-    }:${address.port}`
-  );
+server.listen(port, () => {
+  console.log("Server is listening on port", port);
 });
 
-// https://expressjs.com/en/advanced/healthcheck-graceful-shutdown.html
+
+
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
 
 function shutdown() {
   console.log("SIGTERM signal received: closing HTTP server");
   server.close();
-  bare.close();
+  messages = []
   process.exit(0);
 }
-
-server.listen({
-  port,
-});
