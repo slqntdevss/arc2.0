@@ -50,7 +50,10 @@ sendButton.addEventListener("click", async function () {
           messageInput.value = '';
           createMessage(data.username, data.message);
         } else {
-          console.error('Failed to send message');
+          if(response.status == 400) {
+            messageInput.value = '';
+            alert("Please avoid from using language like this.");
+          }
         }
       } catch (error) {
         console.error('Error:', error);

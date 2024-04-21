@@ -52,19 +52,16 @@ function filterMessage(message) {
     "wh0re",
     "digger",
   ];
-  // Check if the message contains any filtered words
+ 
   for (const word of filteredWords) {
     if (message.toLowerCase().includes(word)) {
-      return null; // Return null if message contains filtered words
+      return null;
     }
   }
-  return message; // Return the original message if no filtered words are found
+  return message;
 }
-// Route to send messages
 app.post("/sendmessage", (req, res) => {
   const { username, message } = req.body;
-  
-  // Filter message on the server side
   const filteredMessage = filterMessage(message);
   if (!filteredMessage) {
     return res.status(400).send("Message contains prohibited words");
@@ -82,18 +79,7 @@ app.use(express.static(publicPath));
 app.use("/uv/", express.static(uvPath));
 app.use("/epoxy/", express.static(epoxyPath));
 app.use("/baremux/", express.static(baremuxPath));
-/*const socketio = new Server(server);
-socketio.on("connection", (socket) => {
-  console.log("A user connected");
 
-  socket.on("disconnect", () => {
-    console.log("User disconnected");
-  });
-
-  socket.on("chatMessage", (message) => {
-    io.emit("chatMessage", message);
-  });
-});*/
 app.get("/", (_req, res) => {
   res.sendFile(join(publicPath, "index.html"));
 });
@@ -103,7 +89,6 @@ app.use((_req, res) => {
 });
 
 server.on("request", (req, res) => {
-  // Check if the request should be handled by express
   if (!req.url.endsWith("/wisp/")) {
     app(req, res);
   }
