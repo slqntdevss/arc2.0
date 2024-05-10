@@ -7,7 +7,8 @@
   "scripts": {
     "run": "node server/index.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "css": "npx tailwindcss -i src/input.css -o public/css/output.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +19,7 @@
     "@titaniumnetwork-dev/ultraviolet": "^3.0.0",
     "@tomphttp/bare-server-node": "^2.0.1",
     "@types/node": "^18.0.6",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.2.1", 
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",

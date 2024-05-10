@@ -36,7 +36,7 @@ sendButton.addEventListener("click", async function () {
   
     const message = messageInput.value.trim();
     if (message) {
-      const username = localStorage.getItem('username');
+      const username = localStorage.getItem('user');
       const data = { username, message };
       try {
         const response = await fetch('/sendmessage', {

@@ -12,6 +12,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const publicPath = join(__dirname, "../public");
+const locked = false; //set this to true if you want to use a password when trying to enter the site
 
 const app = express();
 const server = createServer();
@@ -37,6 +38,9 @@ function filterMessage(message) {
     "border hopper",
     "n1gg@",
     "nig",
+    "ky and s",
+    "k and y and s",
+    "ky$",
     "kill yourself",
     "kys",
     "jump off a cliff",
