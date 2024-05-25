@@ -1,8 +1,17 @@
 importScripts('../epoxy/index.js');
 importScripts('uv/uv.bundle.js');
 importScripts('uv/uv.config.js');
-importScripts(__uv$config.sw || 'uv.sw.js');
+importScripts(__uv$config.sw || 'uv/uv.sw.js');
 
-const sw = new UVServiceWorker();
+const uv = new UVServiceWorker();
 
-self.addEventListener('fetch', (event) => event.respondWith(sw.fetch(event)));
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        (async ()=>{
+            if (uv.route(event)) {
+                return await uv.fetch(event);
+            }
+            return await fetch(event.request);
+        })()
+    );
+});

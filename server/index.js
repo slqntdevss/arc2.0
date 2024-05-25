@@ -48,7 +48,6 @@ function filterMessage(message) {
     "killyourself",
     "faggot",
     "killyour$elf",
-    "rigged",
     "slut",
     "$lut",
     "whore",

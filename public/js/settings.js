@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
           e.preventDefault();
 
           const targetSectionId = link.getAttribute("href").substring(1);
-          console.log("Target Section ID:", targetSectionId);
 
           const targetSection = document.getElementById(targetSectionId);
 
@@ -20,6 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+function resetData() {
+  if(confirm("Are you sure you want to reset your data? This will treat you as a new user")) {
+    localStorage.clear();
+    window.location.reload();
+  }
+}
   function ab() {
     var ab = window.open(
       "",

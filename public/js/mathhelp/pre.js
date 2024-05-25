@@ -1,4 +1,4 @@
-async function games() {
+async function gotowithframe(site) {
   try {
     await registerSW();
   } catch (err) {
@@ -6,7 +6,7 @@ async function games() {
     throw err;
   }
 
-  frame.src = __uv$config.prefix + __uv$config.encodeUrl("https://radon.games/");
+  frame.src = __uv$config.prefix + __uv$config.encodeUrl(site);
 };
 async function goto(site) {
     try {
