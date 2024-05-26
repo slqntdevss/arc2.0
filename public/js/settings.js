@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function resetData() {
   if(confirm("Are you sure you want to reset your data? This will treat you as a new user")) {
     localStorage.clear();
-    window.location.reload();
+    window.top.location.reload();
   }
 }
   function ab() {
