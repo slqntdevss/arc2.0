@@ -54,7 +54,10 @@ function filterMessage(message) {
     "fag",
     "wh0re",
     "digger",
-    "ni@@a"
+    "ni@@a",
+    "porn",
+    "pornhub",
+    "penis"
   ];
  
   for (const word of filteredWords) {
