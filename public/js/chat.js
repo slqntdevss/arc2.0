@@ -27,17 +27,17 @@ function createMessage(username, messageText) {
 }
 
 sendButton.addEventListener("click", async function () {
-    const currentTime = Date.now();
-    if (currentTime - lastMessageTime < SEND_INTERVAL) {
+  const currentTime = Date.now();
+  if (currentTime - lastMessageTime < SEND_INTERVAL) {
       alert("Please wait before sending another message.");
       return;
-    }
-    lastMessageTime = currentTime;
+  }
+  lastMessageTime = currentTime;
   
     const message = messageInput.value.trim();
     if (message) {
       const username = localStorage.getItem('user');
-      const timestamp = getstamp();
+      const timestamp = Date.now();
       const data = { username, message, timestamp};
       try {
         const response = await fetch('/sendmessage', {
@@ -53,7 +53,9 @@ sendButton.addEventListener("click", async function () {
         } else if (response.status == 400) {
             messageInput.value = '';
             alert("Please avoid from using language like this.");
-          }
+          }else if (response.status == 403) {
+            alert("Invalid timestamp or attempt to recreate the send event.");
+        }
       } catch (error) {
         console.error('Error:', error);
       }
@@ -79,11 +81,6 @@ messageInput.addEventListener("keydown", function (event) {
     sendButton.click();
   }
 });
-function getstamp() {
-  var d = new Date();
-  var n = d.getTime();
-  return n;
-}
 
 window.onload = getMessages;
 setInterval(getMessages, 2500);
