@@ -22,9 +22,13 @@ function promptUser() {
     document.body.appendChild(notificationDiv);
     input.addEventListener('keydown', function(event) {
         if (event.key === "Enter") {
+            if(input.value.trim().length < 15) {
             localStorage.setItem('user', input.value);
             document.body.removeChild(notificationDiv);
             screen.classList.remove('screen');
+        } else {
+            alert("name too long")
+        }
         }
     });
 };

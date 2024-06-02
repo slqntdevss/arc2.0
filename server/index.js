@@ -130,7 +130,7 @@ app.post("/sendmessage", (req, res) => {
   const ct = Date.now();
 
     // Allow a time difference of up to 5 seconds
-    const diff = 5000;
+    const diff = 1000;
 
     if (Math.abs(ct - timestamp) > diff) {
         return res.status(403).send("Invalid timestamp or attempt to recreate the send event.");
