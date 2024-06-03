@@ -100,7 +100,10 @@ body {
 	top: -5%;
 	width: 100%;
 }
-
+.chatbox .time {
+	position: relative;
+	left: ;
+}
 .chatbox input::placeholder {
 	color: white;
 }

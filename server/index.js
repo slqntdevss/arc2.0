@@ -104,7 +104,9 @@ function filterMessage(message) {
         "n1&&3r",
         "chink",
         "chigger",
-        "chingchong"
+        "chingchong",
+        "nega",
+        "negas"
     ];
 
     for (const word of filteredWords) {
@@ -129,11 +131,10 @@ app.post("/sendmessage", (req, res) => {
 
   const ct = Date.now();
 
-    // Allow a time difference of up to 5 seconds
     const diff = 1000;
 
     if (Math.abs(ct - timestamp) > diff) {
-        return res.status(403).send("Invalid timestamp or attempt to recreate the send event.");
+        return res.status(403).send("Invalid timestamp or attempt to recreate the send event. Is the user lagging?");
     }
 
     const ky = k();

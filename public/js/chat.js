@@ -10,9 +10,13 @@ function scrollToBottom() {
     chatContainer.scrollHeight - chatContainer.clientHeight;
 }
 
-function createMessage(username, messageText) {
+function createMessage(username, messageText, timestamp) {
   const messageBox = document.createElement("div");
   messageBox.classList.add("message");
+  const time = document.createElement("p");
+  time.classList.add("time");
+  time.textContent = formatTimestamp(timestamp);
+  messageBox.appendChild(time);
   const usernameElement = document.createElement("h5");
   usernameElement.classList.add("username");
   usernameElement.textContent = username;
@@ -24,6 +28,16 @@ function createMessage(username, messageText) {
   
   chatContainer.appendChild(messageBox);
   scrollToBottom();
+}
+function formatTimestamp(timestamp) {
+  const now = new Date(timestamp);
+  let hours = now.getHours();
+  const minutes = now.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+  return hours + ':' + minutesStr + ' ' + ampm;
 }
 
 sendButton.addEventListener("click", async function () {
@@ -49,12 +63,12 @@ sendButton.addEventListener("click", async function () {
         });
         if (response.ok) {
           messageInput.value = '';
-          createMessage(data.username, data.message);
+          createMessage(data.username, data.message, data.timestamp);
         } else if (response.status == 400) {
             messageInput.value = '';
             alert("Please avoid from using language like this.");
           }else if (response.status == 403) {
-            alert("Invalid timestamp or attempt to recreate the send event.");
+            alert("Invalid timestamp or attempt to recreate the send event. are you lagging too hard?");
         }
       } catch (error) {
         console.error('Error:', error);
@@ -67,8 +81,8 @@ async function getMessages() {
     const response = await fetch('/messages');
     const messages = await response.json();
     chatContainer.innerHTML = '';
-    messages.forEach(message => {
-      createMessage(message.username, message.message);
+    messages.forEach(m => {
+      createMessage(m.username, m.message, m.timestamp);
     });
     scrollToBottom();
   } catch (error) {
