@@ -97,15 +97,17 @@ body {
 
 .chatbox .textMessage {
 	position: relative;
-	top: -5%;
+	top: 0%;
 	width: 100%;
 }
 .chatbox .time {
-	position: relative;
-	left: ;
+	position: absolute;
+	color: gray;
+	top: 3%;
+	right: 1%;
 }
 .chatbox input::placeholder {
-	color: white;
+	color: gray;
 }
 
 .chatbox .send {
