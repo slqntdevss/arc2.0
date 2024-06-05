@@ -44,8 +44,8 @@ body {
 	border-radius: 10px;
 	height: 85%;
 	bottom: 3%;
+	overflow: scroll !important;
 	background-color: #0e0e0e;
-	overflow: hidden;
 	box-shadow: 0px 0px 10px rgba(190, 190, 190, 0.3);
 }
 
@@ -83,11 +83,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	height: 100%;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	scrollbar-width: none;
-	-ms-overflow-style: none;
+	overflow: scroll;
+	max-height: 85vh;
+	height: 85vh;
 }
 
 .chatbox .username {
@@ -113,7 +111,7 @@ body {
 .chatbox .send {
 	border-width: 1px;
 	position: fixed;
-	width: 70px;
+	width: 4.25vw;
 	height: 50px;
 	border-radius: 10px;
 	background-color: #1d1d1d;
