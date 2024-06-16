@@ -3,9 +3,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   const sidebarLinks = document.querySelectorAll("#sidebar a");
   var titleChanger = document.querySelector('#titleChanger');
+  var faviChanger = document.querySelector('#faviChanger');
   if (titleChanger) {
-    titleChanger.addEventListener("input", function () { // Corrected event type to "input"
+    titleChanger.addEventListener("input", function () {
       window.top.document.title = titleChanger.value;
+    });
+  } else {
+    console.error("No input, is the page loaded?");
+  }
+  if (faviChanger) {
+    faviChanger.addEventListener("input", function () { 
+      window.top.document.querySelector('#favicon').href = faviChanger.value;
     });
   } else {
     console.error("No input, is the page loaded?");
@@ -37,12 +45,12 @@ function resetData() {
   }
 }
 function ab() {
-  var myWindow1 = window.open(
+  var ab = window.open(
     "",
-    "myWindow1",
+    "ab",
     "scrollbars=1,height=" + screen.availHeight + ",width=" + screen.availWidth,
   );
-  myWindow1.document.write(
+  ab.document.write(
     '<!DOCTYPE html>\n\
 <title>Google</title>\n\
 <p><iframe src="' +
@@ -53,5 +61,5 @@ function ab() {
 alert("");\n\
 <\x2fscript>',
   );
-  location.replace("https://classroom.google.com");
+  window.top.location.replace("https://classroom.google.com");
 }

@@ -79,6 +79,5 @@ process.on("SIGTERM", shutdown);
 function shutdown() {
     console.log("SIGTERM signal received: closing HTTP server");
     server.close();
-    messages = []
     process.exit(0);
 }
